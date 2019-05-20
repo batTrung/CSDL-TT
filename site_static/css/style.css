@@ -1,0 +1,165 @@
+html,body {
+  font-family: 'Open Sans', serif;
+  background: #F2F6FA !important;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+footer {
+  background-color: #F2F6FA !important;
+}
+
+.topNav {
+  border-top: 5px solid #3498DB;
+}
+.topNav .container {
+  border-bottom: 1px solid #E6EAEE;
+}
+.container .columns {
+  margin: 3rem 0;
+}
+.navbar.is-white {
+  background: #FFF;
+}
+.navbar-brand .brand-text {
+  font-size: 1.11rem;
+  font-weight: bold;
+}
+
+aside.menu {
+  padding-top: 3rem;
+}
+aside.menu .menu-list {
+  line-height: 1.5;
+}
+aside.menu .menu-label {
+  padding-left: 10px;
+  font-weight: 700;
+}
+.button.is-primary.is-alt {
+  background: #00c6ff;
+  background: -webkit-linear-gradient(to bottom, #0072ff, #00c6ff);
+  background: linear-gradient(to bottom, #0072ff, #00c6ff);
+  font-weight: 700;
+  font-size: 14px;
+  height: 3rem;
+  line-height: 2.8;
+}
+.media-left img {
+  border-radius: 50%;
+}
+.media-content p {
+  font-size: 14px;
+  line-height: 2.3;
+  font-weight: 700;
+  color: #8F99A3;
+}
+article.post {
+  margin: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #E6EAEE;
+}
+article.post:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.menu-list li{
+  padding: 5px;
+}
+
+
+div.date{
+  width: 135px;
+}
+
+
+
+/*price slider*/
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: #c61010;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 23px;
+    height: 24px;
+    border: 0;
+    background: url('home.png');
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 23px;
+    height: 24px;
+    border: 0;
+    background: url('home.png');
+    cursor: pointer;
+}
+
+#image-list{
+  width: 42px;
+  height: 45px;
+}
+
+
+.xmodal{
+  display: none;
+  position: fixed;
+  z-index: 1000000;
+  padding-top: 100px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(21, 20, 20);
+  background-color: rgba(21, 20, 20, 0.52);
+}
+.modal-background{
+  background-color: rgba(10,10,10,.78); !important;
+}
+
+img {
+  cursor: pointer;
+}
+
+
+p.success{
+  color:#42c56a;
+}
+
+p.error{
+  color: red;
+}
+
+
+@media only screen and (min-width: 769px){
+  .column.is-offset-one-quarter{
+    margin-left: 25%;
+  }
+}
+
+@media only screen and (max-width:435px) {
+  #map {
+    height : 400px !important;
+  }
+}

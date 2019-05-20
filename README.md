@@ -1,4 +1,4 @@
-# 
+# Bài tập cơ sở dữ liệu và thuật toán
 
 <a target="_blank" href=""><img src="" alt="" /></a>
 
@@ -12,13 +12,13 @@
 Đầu tiên, tải repository về máy tính:
 
 ```bash
-$ git clone https://github.com/batTrung/myproject-django.git
+$ git clone https://github.com/batTrung/CSDL-TT.git
 ```
 
 Cài đặt requirements:
 
 ```bash
-$ cd myproject-django
+$ cd CSDL-TT
 $ source env/bin/activate
 ```
 

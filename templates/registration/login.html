@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Đăng nhập tài khoản MapViet
+{% endblock title %}
+
+{% block content %}
+  <div class="column is-4 is-offset-4">
+    <form data-href="{% url "ajax_check_login" %}" method="POST" novalidate>
+      {% csrf_token %}
+
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          {{form.username|add_class:'input is-primary'|attr:'placeholder:username hoặc email'}}
+          <span class="icon is-small is-left">
+            <i class="fa fa-user"></i>
+          </span>
+          {% if form.username.errors %} 
+          <span class="icon is-small is-right">
+            <i class="fa fa-warning"></i>
+          </span>
+          {% endif %}
+        </p>
+      </div>
+
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+           {{form.password|attr:'class:input'|attr:'placeholder:**********'}}
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+          {% if form.password.errors %}
+              
+          <span class="icon is-small is-right">
+            <i class="fa fa-warning"></i>
+          </span>
+          {% endif %}
+        </p>
+      </div>
+      {% if form.password.errors %}
+        <p class="help is-danger">Mật khẩu hoặc tên người dùng không đúng</p>
+      {% endif %}
+
+      <div class="field">
+        <p class="control">
+          <button class="button is-success">
+            Đăng nhập
+          </button>
+        </p>
+      </div>
+
+    </div>  
+  </form>
+  </div>    
+{% endblock content %}
+
+{% block scripts %}
+  <script src="{% static "js/account/login.js" %}"></script>
+{% endblock scripts %}
+
