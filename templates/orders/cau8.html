@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+   Bài số 8 
+{% endblock title %}
+
+{% block question %}
+<tr>
+	<td>Đề bài:</td>
+	<td>Cho tọa độ của n của hàng ăn tịa HN ( sinh và lưu vào File hoặc lấy từ Gmaps).</td>
+</tr>
+<tr>
+	<td>Input:</td>
+	<td>Tọa độ hiện tại</td>
+</tr>
+<tr>
+	<td>Output:</td>
+	<td>K của hàng gần vị trí bạn nhất</td>
+</tr>
+<tr>
+	<td>Gợi ý:</td>
+	<td>Sử dụng thuật toán <a href="https://en.wikipedia.org/wiki/K-d_tree">kdTree</a></td>
+</tr>
+{% endblock question %}
+{% block content %}
+
+<div class="column is-offset-one-quarter  is-6">
+  <div class="card is-shady" style="padding: 0.25rem;">
+    <div id="map">
+
+    </div>
+    <div class="card-content">
+      <div class="content">
+
+      	<label class="label">Nơi đi</label>
+      	<div class="field is-horizontal">
+			<div class="field-body">
+				<div class="field">
+		    		<div class="control has-icons-right has-icons-left ">
+		    			<input id="myloca" class="input is-primary" type="text" placeholder="Tìm địa chỉ của bạn">
+		    			<span class="icon is-small is-left">
+			      			<i class="fa fa-street-view icon has-text-danger"></i>
+			    		</span>
+				    	<span class="icon is-small is-right">
+					      <i class="fa fa-search"></i>
+					    </span>
+		  			</div>
+
+		   		</div>
+			    <div class="field">
+			    	<a id="findloca" class="button is-warning">
+				    	<span class="icon">
+				      		<i class="fa fa-street-view icon has-text-danger"></i>
+				    	</span>
+				    	<span>Tự tìm vị trí</span>
+			  		</a>
+			    </div>
+		  	</div>
+		</div>
+		
+		<input id="fileupload" type="file" name="file" multiple
+           style="display: none;"
+           data-url="{% url 'cau_8' %}"
+           data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+
+		<div class="field">
+		  <div class="file is-info has-name">
+		      <input class="file-input" type="file" name="resume">
+		      <span class="file-cta" id='js-upload'>
+		        <span class="file-icon">
+		          <i class="fa fa-upload"></i>
+		        </span>
+		        <span class="file-label">
+		          Upload File JSON
+		        </span>
+		      </span>
+		      <span id='show-file' class="file-name">
+		      </span>
+		  </div>
+		</div>
+		
+		<div class="field is-horizontal">
+		  <div class="field-body">
+		    <div class="field">
+		      <p class="control is-expanded">
+		        <input id="k" class="input" type="text" placeholder="Nhập số nhà hàng cần tìm">
+		      </p>
+		    </div>
+		    <div class="field">
+			  <button id="submit" data-url="{% url "ajax_get_points" %}" class="button is-warning">
+			  	Tìm kiếm 
+			  </button>
+			</div>
+		  </div>
+		</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+	<script src="{% static "js/orders/cau_8.js" %}"></script>
+{% endblock scripts %}

@@ -2,7 +2,7 @@
 <nav class="navbar is-white topNav">
   <div class="container">
     <div class="navbar-brand">
-      <a class="navbar-item" href="{% url 'map' %}">
+      <a class="navbar-item" href="{% url 'home' %}">
         <img src="{% static 'img/poster1.png' %}" width="112" height="28">
       </a>
       <div class="navbar-burger burger" data-target="topNav">
@@ -13,11 +13,6 @@
     </div>
     
     <div id="topNav" class="navbar-menu">
-      <div class="navbar-end">
-        {% if request.user.is_authenticated %}
-        <a class="navbar-item"  href=""><i class="fa fa-search"></i>&nbsp; Tìm nhà</a>            
-        {% endif %}
-      </div>
 
       <div class="navbar-end">
         <div class="navbar-item">

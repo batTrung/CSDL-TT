@@ -52,9 +52,36 @@
 <body>
     {% block modal %}
       
-    {% endblock modal %}
-   
+    {% endblock modal %}   
     {% include "includes/navbar.html" %}
+    <br>
+    <section class="container">
+      <div class="column">
+        <!-- Profile -->
+        <div class="card">
+          <div class="card-content">
+            <h3 class="title is-4">Đề bài</h3>
+
+            <div class="content">
+              <table class="table-profile">
+                <tbody>
+                  <tr>
+                    <th colspan="1"></th>
+                    <th colspan="2"></th>
+                  </tr>
+                  {% block question %}
+        
+                  {% endblock question %}
+      
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <h3 class="title has-text-centered" >Thực hành</h3>
+    </section>
     <section class="container">
       {% block content %}
 
@@ -75,6 +102,10 @@
   <!-- ESRI tìm kiếm bằng Leaflet Geocoder -->
   <link rel="stylesheet" href="{% static 'css/esri-leaflet-geocoder.css' %}" />
   <script src="{% static 'js/esri-leaflet-geocoder.js' %}"></script>
+
+  <script src="{% static 'js/jquery-file-upload/vendor/jquery.ui.widget.js' %}"></script>
+  <script src="{% static 'js/jquery-file-upload/jquery.fileupload.js' %}"></script>
+
   {% block scripts %}
       
   {% endblock scripts %}

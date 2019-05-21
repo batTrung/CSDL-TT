@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+   Bài số 5
+{% endblock title %}
+
+{% block question %}
+<tr>
+	<td>Đề bài:</td>
+	<td>Dùng Suggest để hoàn thành nốt từ hiện tại.</td>
+</tr>
+<tr>
+	<td>Input:</td>
+	<td>Từ điển cho sẵn + Văn bản đang gõ, phân biệt chữ hoa thường</td>
+</tr>
+<tr>
+	<td>Output:</td>
+	<td>Suggest từ đang gõ. Nếu không có thì bỏ qua</td>
+</tr>
+<tr>
+	<td>Gợi ý:</td>
+	<td>Sử dụng thuật toán <a href="https://vi.wikipedia.org/wiki/Trie">Prefix Tree (Trie)</a></td>
+</tr>
+{% endblock question %}
+
+{% block content %}
+<div class="column is-offset-one-quarter is-6">
+      <div class="content">
+      	<p class="success"></p>
+		<form action="" data-url="{% url "cau_5" %}" data-dropdown="{% url "ajax_dropdown_cau_5" %}">
+			{% csrf_token %}
+			<div class="field has-addons">
+			  <div class="control">
+			    <div class="dropdown is-active">
+				  <div class="dropdown-trigger">
+				    {% render_field form.title aria-haspopup="true" aria-controls="dropdown-menu" class="input is-large is-primary" placeholder="Gõ nội dung tìm kiếm" %}
+				  </div>
+				  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+				    <!-- show result -->
+				  </div>
+				</div>
+			  </div>
+			  <div class="control">
+			    <button type="submit" class="button is-large is-warning">
+			    	<span class="icon">
+				      <i class="fa fa-search"></i>
+				    </span>
+					<span>Tìm kiếm</span>
+				</button>
+			  </div>
+			</div>
+		</form>
+      </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+	$(function(){
+
+		//FORM SUBMIT
+		$('form').submit(function(){
+			$form = $(this);
+
+			$.ajax({
+				url: $form.attr("data-url"),
+				dataType: 'json',
+				data: $form.serialize(),
+				type: 'post',
+				success: function(data){
+					$('.success').html("Nội dung này đã được thêm vào")
+					//reset form
+					$form[0].reset()
+				}
+			});
+			return false;
+		});
+
+		// DROPDOWN 
+		$('#id_title').on('keyup',function(){
+
+			$.ajax({
+				url: $('form').attr('data-dropdown'),
+				dataType: 'json',
+				type: 'get',
+				data:{
+					title : $('#id_title').val()
+				},
+				success: function(data){
+					if (data.result){
+						$('#dropdown-menu').html(data.data_html)
+					} else {
+						$('#dropdown-menu').html('')
+					}
+				}
+			});
+		});
+	});
+</script>
+{% endblock scripts %}

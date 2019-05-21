@@ -1,8 +1,60 @@
 {% extends "base.html" %}
 {% block title %}
-	Trang chu
+	Cơ sở dữ liệu và thuật toán
 {% endblock title %}
 
 {% block content %}
-	Home Page
+<div class="container">
+  <div class="notification">
+  	<div class="field is-grouped is-grouped-multiline">
+	  <p class="control">
+	    <a class="button is-primary">Câu 1</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-warning">Câu 2 (Backtracking)</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-primary">Câu 3</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-primary">Câu 4</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-warning" href="{% url 'cau_5' %}">Câu 5 (Trie)</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-primary">Câu 6</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-warning">Câu 7 (Huffman)</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-warning" href="{% url "cau_8" %}">Câu 8 (KDTree</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-warning">Câu 9 (Splay)</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-primary">Câu 10</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-primary">Câu 11</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-warning">Câu 12</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-primary">Câu 13</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-warning">Câu 14 (test Tree)</a>
+	  </p>
+	  <p class="control">
+	    <a class="button is-warning">Câu 15 (External Merge Sort)</a>
+	  </p>
+
+	</div>
+  </div>
+</div>
+
 {% endblock content %}
