@@ -2,36 +2,35 @@
 {% load static %}
 {% load widget_tweaks %}
 {% block title %}
-   Bài số 8 
+   Bài số 7
 {% endblock title %}
 
 {% block question %}
 <tr>
 	<td>Tên bài:</td>
-	<td>Cho tọa độ của n của hàng ăn tịa HN ( sinh và lưu vào File hoặc lấy từ Gmaps).</td>
+	<td>Thuật toán mã hóa Hufman</td>
 </tr>
 <tr>
 	<td>Input:</td>
-	<td>Tọa độ hiện tại</td>
+	<td>1 File văn bản dạng txt</td>
 </tr>
 <tr>
 	<td>Output:</td>
-	<td>K của hàng gần vị trí bạn nhất</td>
+	<td>1 File đã được mã hóa. So sánh kích thước trước và sau khi mã hóa</td>
 </tr>
 <tr>
 	<td>Gợi ý:</td>
-	<td>Sử dụng thuật toán <a href="https://en.wikipedia.org/wiki/K-d_tree">kdTree</a></td>
+	<td>Sử dụng cây <a href="https://vi.wikipedia.org/wiki/M%C3%A3_h%C3%B3a_Huffman">Huffman</a></td>
 </tr>
 {% endblock question %}
 {% block content %}
 
-<div class="column is-offset-one-quarter  is-6">
-  <div class="card is-shady" style="padding: 0.25rem;">
-    <div id="map">
+<div class="column has-text-centered is-12">
+	<div id="grid" class="has-text-centered">
 
-    </div>
-    <div class="card-content">
-      <div class="content">
+	</div>
+    <div class="card-content has-text-centered">
+      <div class="content has-text-centered">
 
       	<label class="label">Nơi đi</label>
       	<div class="field is-horizontal">
@@ -48,7 +47,7 @@
 		  			</div>
 
 		   		</div>
-			    <div class="field">
+			    <div class="field has-text-centered">
 			    	<a id="findloca" class="button is-warning">
 				    	<span class="icon">
 				      		<i class="fa fa-street-view icon has-text-danger"></i>
@@ -58,13 +57,8 @@
 			    </div>
 		  	</div>
 		</div>
-		
-		<input id="fileupload" type="file" name="file" multiple
-           style="display: none;"
-           data-url="{% url 'cau_8' %}"
-           data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
 
-		<div class="field">
+		<div class="field has-text-centered">
 		  <div class="file is-info has-name">
 		      <input class="file-input" type="file" name="resume">
 		      <span class="file-cta" id='js-upload'>
@@ -97,11 +91,13 @@
 
       </div>
     </div>
-  </div>
 </div>
 
 {% endblock %}
 
 {% block scripts %}
-	<script src="{% static "js/orders/cau_8.js" %}"></script>
+<script src="{% static "js/d3.v5.min.js" %}"></script>
+<script>
+	
+</script>
 {% endblock scripts %}

@@ -1,57 +1,47 @@
-from collections import defaultdict
+import json
+import random
+import datetime
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from django.core.files.storage import default_storage
 from django.views import View
 from django.template.loader import render_to_string
-import json
 from .models import Caunam
 from .forms import CautamForm, CaunamForm
-
-
-# ============================================= #
-# 				Algorithms (Python)				#
-# ============================================= #
-
-# PREFIX TREE - TRIE 
-class TrieNode:
-    def __init__(self):
-        self.children = defaultdict(TrieNode)
-        self.isEnd = False
-        
-    def insert(self, word):
-        node = self
-        for w in word:
-            node = node.children[w]
-        node.isEnd = True
-
-    def search(self, word):
-        node = self
-        for w in word:
-            if w in node.children:
-                node = node.children[w]
-            else:
-                return []
-        # Khớp vối tiền tố
-        # traverse current node to all leaf nodes
-        result = []
-        self.traverse(node, list(word), result)
-        return [''.join(r) for r in result]
-
-    def traverse(self, root, prefix, result):
-        if root.isEnd:
-            result.append(prefix[:])
-        for c, n in root.children.items():
-            prefix.append(c)
-            self.traverse(n, prefix, result)
-            prefix.pop(-1)
-
-root = TrieNode()         
-
+from .algorithms import TrieNode, backtrackingMaze
+         
 # ============================================= #
 # 				DJANGO VIEW (Python)			#
 # ============================================= #
+random.seed(datetime.datetime.now())
+
+def grid_maker(h):
+	return [
+        [random.randint(-5, 5) for _ in range(h)]
+        for _ in range(h)
+    ]
+
+grid = grid_maker(5)
+
+def cau_2(request):
+	return render(request, 'orders/cau2.html',{'section':'cau'})
+
+def ajax_get_solution(request):
+	data = {}
+	(data['solu'],data['total']) = backtrackingMaze(grid)
+
+	return JsonResponse(data)
+
+def ajax_get_random_node(request):
+	global grid
+	data = {}
+	grid[0][0] = 0
+	grid[4][4] = 0
+	data['grid'] = grid
+
+	return JsonResponse(data)
+
 def cau_5(request):
 	data = {}
 	form = CaunamForm()
@@ -61,10 +51,10 @@ def cau_5(request):
 			form.save()
 			return JsonResponse(data)
 
-	return render(request, 'orders/cau5.html', {'form':form})
+	return render(request, 'orders/cau5.html', {'form':form,'section':'cau'})
 
 def ajax_dropdown_cau_5(request):
-	global root
+	root = TrieNode()
 	data = {}
 	val = request.GET.get('title')
 	if val == '':
@@ -85,6 +75,9 @@ def ajax_dropdown_cau_5(request):
 	
 	return JsonResponse(data)
 
+def cau_7(request):
+	return render(request, 'orders/cau7.html',{'section':'cau'})
+
 def cau_9(request):
 	return render(request, 'orders/cau8.html')
 
@@ -100,7 +93,7 @@ class CautamView(View):
 	def get(self, request):
 		form = CautamForm()
 
-		return render(self.request, 'orders/cau8.html', {'form': form})
+		return render(self.request, 'orders/cau8.html', {'form': form,'section':'cau'})
 
 	def post(self, request):
 		global dataJson

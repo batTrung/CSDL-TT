@@ -55,7 +55,8 @@
     {% endblock modal %}   
     {% include "includes/navbar.html" %}
     <br>
-    <section class="container">
+    {% if section == 'cau' %}
+      <section class="container">
       <div class="column">
         <!-- Profile -->
         <div class="card">
@@ -82,6 +83,7 @@
       <br>
       <h3 class="title has-text-centered" >Thực hành</h3>
     </section>
+    {% endif %}
     <section class="container">
       {% block content %}
 

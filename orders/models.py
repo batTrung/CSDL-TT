@@ -8,3 +8,6 @@ class Caunam(models.Model):
 	
 	def __str__(self):
 		return self.title
+
+class Cauhai(models.Model):
+	file = models.FileField(upload_to="cau2/")

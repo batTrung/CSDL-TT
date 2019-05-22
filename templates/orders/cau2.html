@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+   Bài số 8 
+{% endblock title %}
+
+{% block stylesheet %}
+	<style>
+		.start{
+			background-color:#FE9922;
+		}
+	</style>
+{% endblock stylesheet %}
+{% block question %}
+<tr>
+	<td>Tên bài:</td>
+	<td>Robot tìm đường đi + phần thưởng</td>
+</tr>
+<tr>
+	<td>Input:</td>
+	<td>Sinh ra một mê cung bởi File maze.txt.</td>
+</tr>
+<tr>
+	<td>Output:</td>
+	<td>Tìm đường sao cho tổng phần thưởng là lớn nhất</td>
+</tr>
+<tr>
+	<td>Gợi ý:</td>
+	<td>Sử dụng <a href="https://en.wikipedia.org/wiki/Backtracking">Backtracking</a></td>
+</tr>
+{% endblock question %}
+{% block content %}
+
+<div class="columns is-centered">
+    <div id="grid">
+    	
+    </div>
+</div>
+ <div class="content has-text-centered">
+	<div class="field">
+	    <a class="button is-warning start" data-solution="{% url "ajax_get_solution" %}" data-href="{% url "ajax_get_random_node" %}">
+		    <span class="icon">
+		      <i class="fa fa-play"></i>
+		    </span>
+		    <span>Bắt đầu</span>
+		 </a>
+	</div>
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static "js/d3.v5.min.js" %}"></script>
+<script src="{% static "js/orders/cau_2.js" %}"></script>
+{% endblock scripts %}
