@@ -134,9 +134,7 @@ var column = row.selectAll(".square")
 						.duration(1000)
 				}
 				$('.start').removeClass("is-loading")
-			},
-			complete: function(data){
-				$('#grid').append('<p class="success has-text-centered">Đã tìm thấy lối đi!</p>')
+				$('.msg').html('Đã tìm thấy lối đi! Tổng điểm là: '+data.total)
 			}
 		});
 
