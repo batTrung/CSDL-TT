@@ -9,7 +9,7 @@ from django.views import View
 from django.template.loader import render_to_string
 from .models import Caunam
 from .forms import CautamForm, CaunamForm
-from .algorithms import TrieNode, backtrackingMaze
+from .algorithms import TrieNode, backtrackingMaze, getNeighbors
          
 # ============================================= #
 # 				DJANGO VIEW (Python)			#
@@ -87,6 +87,7 @@ def cau_12(request):
 def cau_14(request):
 	return render(request, 'orders/cau8.html')
 
+#-----------------> Cau 8
 dataJson = ''
 
 class CautamView(View):
@@ -116,6 +117,8 @@ def ajax_get_points(request):
 	myloca = [float(request.GET.get('lat')), float(request.GET.get('lng'))]
 
 	# kdTree Algorithms
-	print(dataJson[1]['lat'])
+	data['result'] = getNeighbors(dataJson, myloca, klimit)
+	print(data['result'])
 
 	return JsonResponse(data)
+# -----------------------> End Cau 8

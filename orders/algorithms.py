@@ -1,4 +1,6 @@
 from collections import defaultdict
+import math
+import operator
 
 # ============================================= #
 # 				Algorithms (Python)				#
@@ -38,7 +40,23 @@ class TrieNode:
             prefix.pop(-1)
 
 # KDTree ( Cau 8)
+def khoangcach(x,xi):
+    d = 0.0
+    d = pow(float(x[0])- float(xi['lat']),2) + pow(float(x[1])- float(xi['lng']),2)
 
+    return math.sqrt(d)
+
+def getNeighbors(trainingSet, testInstance, k):
+    distances = []
+    for x in range(len(trainingSet)):
+        dist = khoangcach(testInstance, trainingSet[x])
+        distances.append((trainingSet[x], dist))
+    distances.sort(key=operator.itemgetter(1))
+    neighbors = []
+    for x in range(k):
+        neighbors.append(distances[x][0])
+    return neighbors
+    
 # Huffman ( Cau 7)
 
 

@@ -22,6 +22,9 @@ $(function(){
 	var homIcon = L.MakiMarkers.icon({icon: "town-hall",
 									color: "#3c7be2",
 									size: "3"});
+	var resultIcon = L.MakiMarkers.icon({icon: "town-hall",
+									color: "#f8d73d",
+									size: "3"});
 
 	var latlng = {lat: 20.9894757, lng: 105.8523328} // latlng cố định
 
@@ -40,7 +43,7 @@ $(function(){
 	       	var m1 = L.marker(data.results[i].latlng, {draggable:true, icon:myIcon})
 	       	results.addLayer(m1);
 			m1.on('drag', function(e){
-	        	  
+	        	  mylocation  = e.latlng;
 	        })
 	        var addr = data.results[i].text;
 	        $('#myloca').val(addr);
@@ -67,7 +70,7 @@ $(function(){
 	     var mk = L.marker(location, {icon:myIcon, draggable:true}).addTo(map)
 	     mylocation = e.latlng
        	 mk.on('drag', function(e){
-
+       	 	mylocation = e.latlng;
        	})
     };
 
@@ -83,7 +86,7 @@ $(function(){
 	//					upload File  		  					//
 	//==========================================================//
 	var hostname = location.protocol+'//'+location.hostname +':'+location.port	
-
+	var markers = new L.FeatureGroup();
 	$("#js-upload").click(function () {
     	$("#fileupload").click();
   	});
@@ -101,9 +104,10 @@ $(function(){
 	       	points = JSON.parse(data.result.data)
 	       	for (var i in points) {
 			    var latlng = L.latLng({ lat: points[i].lat, lng: points[i].lng });
-			    L.marker( latlng,{draggable:false, icon:homIcon}).addTo(map);
+			    var marker = L.marker( latlng,{draggable:false, icon:homIcon});
+				markers.addLayer(marker);
 			}
-
+			map.addLayer(markers);
 	      }
 	    }
 	});
@@ -113,9 +117,8 @@ $(function(){
 	//==========================================================//
 
 	$("#submit").click(function(){
-		console.log("submit click");
 		$this = $(this);
-
+		markers.clearLayers();
 		$.ajax({
 			url: $this.attr("data-url"),
 			type:'get',
@@ -123,10 +126,14 @@ $(function(){
 			data: {
 				lat: mylocation.lat,
 				lng: mylocation.lng,
-				k: 3
+				k: $('#k').val()
 			},
 			success: function(data){
-				console.log("success");
+				var points = data.result;
+				for (var i in points) {
+			    	var latlng = L.latLng({ lat: points[i].lat, lng: points[i].lng });
+			    	L.marker( latlng,{draggable:false, icon:homIcon}).addTo(map);
+				}
 			}
 		})
 	});
